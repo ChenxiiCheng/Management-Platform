@@ -1,25 +1,42 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import NotFound from './pages/NotFound';
+import { authLogin } from './utils/auth';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Switch>
+        <Route
+          path="/"
+          exact
+          render={(props) => {
+            return <Redirect to="/home/control" {...props} />;
+          }}
+        />
+        <Route
+          path="/home"
+          render={(props) => {
+            // 校验用户是否登陆，如果没有登录跳转到登录界面
+            if (!authLogin()) {
+              return <Redirect to="/login" />;
+            }
+            return <Home {...props} />;
+          }}
+        />
+        <Route path="/login" exact component={Login} />
+        <Route path="/register" exact component={Register} />
+        <Route component={NotFound} />
+      </Switch>
+    </Router>
   );
 }
 

@@ -1,0 +1,26 @@
+.panel-content {
+  .panel-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.canvas-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  #canvas1 {
+    min-width: 300px;
+    height: 250px;
+  }
+
+  #canvas2 {
+    min-width: 300px;
+    height: 250px;
+  }
+}
+
+#canvas3 {
+  width: 400px;
+  height: 250px;
+}
