@@ -30,7 +30,7 @@ export function register(username) {
  * 暂时用于登录页面 判断localStorage中是否有USER_INFO，有跳转
  */
 export function login(username, password) {
-  if (username === 'admin' && password === 123456) {
+  if (username === 'admin' && password === '123456') {
     localStorage.setItem(USER_INFO, JSON.stringify(username));
     return true;
   }
